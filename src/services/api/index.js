@@ -1,0 +1,6 @@
+export { default as resourceApi } from "./core/resource"
+export { default as workOrderApi } from "./core/workOrder"
+export { default as orderApi } from "./core/order"
+export { default as hierarchyApi } from "./core/hierarchy"
+export { default as oeeApi } from "./oee/oee"
+export { default as InjectionMachineApi } from "./injectionMachine/injectionMachine"

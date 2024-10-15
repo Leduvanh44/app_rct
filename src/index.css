@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+}
+
+body {
+    font-size: 1rem;
+    font-weight: 500;
+    @apply bg-neutron-4 text-neutron-1;
+}
+
+h1 {
+    @apply title-32 text-primary-1;
+}
+
+h2 {
+    @apply title-24 text-primary-2;
+}
+
+h3 {
+    @apply heading-20-b text-primary-2;
+}
+
+h4 {
+    @apply text-16-b text-primary-2;
+}
+
+@layer components {
+    .title-32 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .title-24 {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .heading-20-b {
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    .heading-20-s {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .text-16-b {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .text-16-m {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .text-14 {
+        font-size: 0.875rem;
+        font-weight: 300;
+    }
+
+    .hover {
+        position: relative;
+    }
+
+    .hover::after {
+        @apply absolute top-0 left-0 h-full w-full bg-hoverBg;
+        border-radius: inherit;
+        content: "";
+    }
+
+    .overlay-x {
+        overflow-x: overlay;
+    }
+
+    .overlay-y {
+        overflow-y: overlay;
+    }
+
+    .scroll-x {
+        @apply hover:overlay-x overflow-x-hidden pb-1;
+    }
+    .scroll-y {
+        @apply hover:overlay-y overflow-y-hidden pr-1;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-primary-3;
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-3;
+}
