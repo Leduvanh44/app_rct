@@ -7,7 +7,6 @@ import routes from "@/routes"
 
 function App() {
     const isLogin = useSelector((state) => state.auth.isLogin)
-
     return (
         <Routes>
             {routes.map((route) => {
