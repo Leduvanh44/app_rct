@@ -60,7 +60,7 @@ function ManufacturingOrder() {
             },
         )
     }, [callApi])
-
+    console.log("lmao:", manufacturingOrder)
     useEffect(() => {
         fetchData()
     }, [fetchData])

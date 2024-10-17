@@ -39,6 +39,7 @@ import {
     RESOURCE_EQUIPMENT_ACCORDION_TABLE_HEADER,
     MATERIAL_LOT_TABLE_COLUMNS,
     EQUIPMENT_NORMALMACHINE_PROPERTIES_TABLE_COLUMNS,
+    EQUIPMENT_ERROR_PROPERTIES_TABLE_COLUMNS,
     MOLD_INFO_TABLE_COLUMNS,
     PLASTICPRODUCT_INFO_TABLE_COLUMNS,
 } from "@/utils/tableColumns"
@@ -214,6 +215,7 @@ function ResourceType() {
             setActivedItem(null)
         })
     }, [resourceType, callApi])
+
     const fetchAllData = useCallback(() => {
         callApi(
             [
@@ -557,6 +559,7 @@ function ResourceType() {
         setPlasticMaterialProperList(handler.classesList.plasticMaterial(plasticMaterialData))
     }, [plasticMaterialData])
     console.log(plasticMaterialData)
+    console.log(activedItem)
     return (
         <div data-component="ResourceType" className="container flex h-full flex-wrap">
             <div className="relative h-full grow xl:w-full">
@@ -815,6 +818,21 @@ function ResourceType() {
                                             RESOURCE_MATERIAL_ACCORDION_TABLE_HEADER[1].AccordionTableTitle
                                         }
                                     />
+                                    <Table
+                                        activable
+                                        headers={RESOURCE_MATERIAL_ACCORDION_TABLE_HEADER[2].tableHeader}
+                                        body={activedItem.secondaryUnits}
+                                        onRowClick={handleClick.handleMaterialUnitClick}
+                                        onEdit={handleEditWorker}
+                                        onDeleteRow={handleDelete.handleMaterialUnitDelete}
+                                        onAdd={handleAddWorker}
+                                        setMode={setMode}
+                                        unActive={!materialUnitActivedItem}
+                                        accordionTable
+                                        accordionTableTitle={
+                                            RESOURCE_MATERIAL_ACCORDION_TABLE_HEADER[2].AccordionTableTitle
+                                        }
+                                    />
                                 </>
                             ) : (
                                 <></>
@@ -835,6 +853,25 @@ function ResourceType() {
                                         activable
                                         primary
                                         headers={EQUIPMENT_NORMALMACHINE_PROPERTIES_TABLE_COLUMNS}
+                                        body={equipmmentActivedItem[resourceTypePageModeState]?.properties}
+                                        // onEdit={handleEditWorker}
+                                        // onDeleteRow={handleDelete.handleMaterialDefinitionsDelete}
+                                        sticky
+                                        unActive={!activedItem}
+                                        // setMode={setMode}
+                                    />
+                                </>
+                            )}
+                        </div>
+                        <h3 className="ml-1 mb-1">Lỗi thiết bị</h3>
+                        <div className="h-[calc(100%-30px] scroll-y p-1 pt-0">
+                            {resourceType == "equipment" && (
+                                <>
+                                    {/* <div className="-mt-2"></div> */}
+                                    <Table
+                                        activable
+                                        primary
+                                        headers={EQUIPMENT_ERROR_PROPERTIES_TABLE_COLUMNS}
                                         body={equipmmentActivedItem[resourceTypePageModeState]?.properties}
                                         // onEdit={handleEditWorker}
                                         // onDeleteRow={handleDelete.handleMaterialDefinitionsDelete}

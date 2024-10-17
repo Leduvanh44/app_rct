@@ -37,7 +37,7 @@ function Resource() {
             setResData(res),
         )
     }, [callApi])
-    console.log(resData)
+    console.log("res data:", resData)
     return (
         <div data-component="Resource" className="container flex h-full flex-wrap">
             {/* <TreeView /> */}

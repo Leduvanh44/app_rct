@@ -40,7 +40,7 @@ const resourceApi = {
         updateMaterialClass: async (data, classId) => await axiosClient.put(`/materialClasses/${classId}`, data),
         deleteMaterialClass: async (classId) => await axiosClient.delete(`/materialClasses/${classId}`),
 
-        getMaterials: async () => await axiosClient.get("/MaterialDefinitions?PageIndex=1&PageSize=1000"),
+        getMaterials: async () => await axiosClient.get("/MaterialDefinitions"),
         createMaterial: async (data) => await axiosClient.post("/MaterialDefinitions", data),
         updateMaterial: async (data, id) => await axiosClient.put(`/MaterialDefinitions/${id}`, data),
         deleteMaterial: async (id) => await axiosClient.delete(`/MaterialDefinitions/${id}`),

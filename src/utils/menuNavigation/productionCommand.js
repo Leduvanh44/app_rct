@@ -66,6 +66,7 @@ export const getProductionCommandMenuNav = (prerequisiteOperations, fourSelectDa
         ],
     },
 ]
+
 export const getCreateManufacturingOrderMenuNav = (materialDefinitionList) => [
     {
         id: "info",
@@ -118,6 +119,7 @@ export const getCreateManufacturingOrderMenuNav = (materialDefinitionList) => [
         ],
     },
 ]
+
 export const getCreateInjectionManufacturingOrderMenuNav = (materialDefinitionList, equipmentList) => [
     {
         id: "info",
@@ -215,6 +217,59 @@ export const getEditManufacturingOrderMenuNav = (materialDefinitionList) => [
             //     list: materialDefinitionList ?? [],
             //     isError: validateRequiredField,
             // },
+        ],
+    },
+]
+
+export const getCreateScheduleMenuNav = (materialDefinitionList) => [
+    {
+        id: "she",
+        title: "Lịch làm việc mới",
+        type: "form",
+        items: [
+            {
+                id: "name",
+                type: "text",
+                label: "Tên lịch làm việc mới",
+                isError: validateRequiredField,
+            },
+            {
+                id: "materialDefinitionId",
+                type: "checkbox",
+                label: "ID định nghĩa vật tư",
+                list: materialDefinitionList ?? [],
+                isError: validateRequiredField,
+            },
+            {
+                id: "quantity",
+                type: "text",
+                label: "Số lượng",
+                isError: validateNumberField,
+            },
+            {
+                id: "unit",
+                type: "text",
+                label: "Đơn vị",
+                isError: validateDescField,
+            },
+            {
+                id: "dueDate",
+                type: "datetime-local",
+                label: "Ngày đến hạn",
+                // isError: validateDateInput,
+            },
+            {
+                id: "availableDate",
+                type: "datetime-local",
+                label: "Ngày có thể thực hiện",
+                // isError: validateDateInput,
+            },
+            {
+                id: "priority",
+                type: "text",
+                label: "Mức độ ưu tiên",
+                isError: validateNumberField,
+            },
         ],
     },
 ]

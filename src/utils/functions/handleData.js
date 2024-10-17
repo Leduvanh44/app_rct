@@ -50,7 +50,11 @@ export const getSegmentOptionList = (segments) => {
 }
 
 export const getResourceOptionsList = (items, key) => {
-    return items.map((item) => ({ value: item[key], key: item.name }))
+    return items.map((item) => {
+        const result = { value: item[key], key: item.name }
+        console.log(result);
+        return result;
+    });
 }
 export const getPrerequisteOperationList = (items, valueKey, keyKey) => {
     return items.map((item) => ({ value: item[valueKey], key: item[keyKey] }))

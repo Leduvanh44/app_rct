@@ -273,6 +273,24 @@ export const RESOURCE_MATERIAL_ACCORDION_TABLE_HEADER = [
             },
         ],
     },
+    {
+        AccordionTableTitle: "Lỗi vật tư",
+        tableHeader: [
+            {
+                Header: "Id",
+                accessor: "unitId",
+            },
+            {
+                Header: "Tên lỗi",
+                accessor: "unitName",
+            },
+            {
+                Header: "Mô tả",
+                accessor: "conversionValueToPrimaryUnit",
+            },
+        ],
+    },
+
 ]
 export const RESOURCE_EQUIPMENT_ACCORDION_TABLE_HEADER = [
     {
@@ -358,6 +376,24 @@ export const EQUIPMENT_NORMALMACHINE_PROPERTIES_TABLE_COLUMNS = [
     {
         Header: "Đơn vị",
         accessor: "valueUnitOfMeasure",
+        disableSortBy: false,
+    },
+]
+
+export const EQUIPMENT_ERROR_PROPERTIES_TABLE_COLUMNS = [
+    {
+        Header: "Mã lỗi",
+        accessor: "valueString",
+        disableSortBy: false,
+    },
+    {
+        Header: "Loại lỗi",
+        accessor: "valueString",
+        disableSortBy: false,
+    },
+    {
+        Header: "Mô tả",
+        accessor: "valueString",
         disableSortBy: false,
     },
 ]
