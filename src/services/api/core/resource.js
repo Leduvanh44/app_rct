@@ -44,7 +44,6 @@ const resourceApi = {
         createMaterial: async (data) => await axiosClient.post("/MaterialDefinitions", data),
         updateMaterial: async (data, id) => await axiosClient.put(`/MaterialDefinitions/${id}`, data),
         deleteMaterial: async (id) => await axiosClient.delete(`/MaterialDefinitions/${id}`),
-
         createMaterialUnit: async (data, id) =>
             await axiosClient.post(`/MaterialDefinitions/${id}/materialUnits`, data),
         updateMaterialUnit: async (data, materialDefinitionsId, materialUnitsId) =>

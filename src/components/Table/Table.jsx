@@ -49,7 +49,10 @@ function Table({
         e.stopPropagation()
         if (accordionTableTitle == "Đơn vị phụ") {
             setMode("workUnit")
-        } else setMode("operation")
+        } else if (accordionTableTitle == "Lỗi vật tư") {
+            setMode("ErrorMaterial")
+        } else  
+            setMode("operation")
         onAdd(e)
     }
 

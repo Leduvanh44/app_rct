@@ -38,6 +38,8 @@ function Resource() {
         )
     }, [callApi])
     console.log("res data:", resData)
+    console.log("res menuNav:", menuNav)
+
     return (
         <div data-component="Resource" className="container flex h-full flex-wrap">
             {/* <TreeView /> */}

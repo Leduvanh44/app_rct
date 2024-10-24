@@ -257,7 +257,10 @@ function Setting() {
             shiftInfo: shiftsValue.shiftInfo.filter((_item, _index) => _index !== index),
         })
     }
-
+    if (shiftList) {
+        console.log("shiftList;", shiftList)
+        console.log("shiftsValue;", shiftsValue)
+    }
     return (
     <div data-component="Setting" className="h-full container flex flex-col gap-10">
         <div className="flex gap-10 w-full px-[2%]">

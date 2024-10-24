@@ -96,7 +96,7 @@ function NewProduct() {
             },
         )
     }, [callAPi])
-
+    console.log(segments)
     return (
         <div data-component="NewProduct" className="container flex h-full">
             <div className="mr-6 h-full w-2/5">

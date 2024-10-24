@@ -46,6 +46,7 @@ function OeePage() {
     useEffect(() => {
         getMachineList()
     }, [getMachineList])
+    
     const getOeeData = useCallback(() => {
         callApi(
             () => oeeApi.getOee(selectedMachine[0], dayStart, dayEnd, timeFrame),
@@ -69,7 +70,16 @@ function OeePage() {
     }
     const xaxis = oeeData.map((e) => e.endTime)
     const yaxis = oeeData.map((e) => e[handleOeeMode(oeeModeIndex).toLowerCase()])
-
+    const numericYaxis = yaxis.map(value => parseFloat(value));
+    const sortedValues = numericYaxis.sort((a, b) => b - a);
+    const total = sortedValues.reduce((sum, value) => sum + value, 0);
+    let cumulativeSum = 0;
+    const cumulativePercentages = sortedValues.map(value => {
+        cumulativeSum += value;
+        return (cumulativeSum / total) * 100;
+    });
+    
+    console.log("Phần trăm tích lũy:", cumulativePercentages);
     const state = {
         options: {
             xaxis: {
@@ -77,25 +87,49 @@ function OeePage() {
             },
             yaxis:
                 oeeModeIndex !== 5
-                    ? {
+                    ? ([{
                           min: 0,
                           max: 100,
                           tickAmount: 5,
                           decimalsInFloat: 1,
-                      }
-                    : { decimalsInFloat: 1 },
+                      },
+                      {
+                        opposite: true,
+                        title: {
+                          text: 'Cumulative %'
+                        },
+                        min: 0,
+                        max: 100,
+                        decimalsInFloat: 1,
+                      }])
+                    : ([{ decimalsInFloat: 1 }, {
+                        opposite: true,
+                        title: {
+                          text: 'Cumulative %'
+                        },
+                        min: 0,
+                        max: 100,
+                        decimalsInFloat: 1,
+                      }]),
             noData: {
                 text: "Loading...",
             },
+            
         },
         series: [
             {
                 name: `${handleOeeMode(oeeModeIndex)}`,
                 data: yaxis,
+                type: 'line',
+            },
+            {
+                name: "Pareto " + `${handleOeeMode(oeeModeIndex)}`,
+                data: cumulativePercentages,
+                type: 'line',
             },
         ],
     }
-
+    console.log(yaxis)
     return (
         <>
             <div className="flex h-screen flex-col">

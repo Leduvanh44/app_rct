@@ -173,7 +173,23 @@ export const EQUIPMENT_CLASS_TABLE_COLUMNS = [
         disableSortBy: false,
     },
 ]
-
+export const EQUIPMENT_CLASS_DOWNTIME_TABLE_COLUMNS = [
+    {
+        Header: "Mã",
+        accessor: "name",
+        disableSortBy: false,
+    },
+    {
+        Header: "Thời gian dừng máy",
+        accessor: "description",
+        disableSortBy: false,
+    },
+    {
+        Header: "Loại dừng máy",
+        accessor: "type",
+        disableSortBy: false,
+    },
+]
 //material
 export const MATERIAL_INFO_TABLE_COLUMNS = [
     {
@@ -278,15 +294,15 @@ export const RESOURCE_MATERIAL_ACCORDION_TABLE_HEADER = [
         tableHeader: [
             {
                 Header: "Id",
-                accessor: "unitId",
+                accessor: "defectCode",
             },
             {
                 Header: "Tên lỗi",
-                accessor: "unitName",
+                accessor: "defectName",
             },
             {
                 Header: "Mô tả",
-                accessor: "conversionValueToPrimaryUnit",
+                accessor: "description",
             },
         ],
     },

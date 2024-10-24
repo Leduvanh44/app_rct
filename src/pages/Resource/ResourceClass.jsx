@@ -16,6 +16,7 @@ import {
     WORKER_CLASS_TABLE_COLUMNS,
     EQUIPMENT_CLASS_TABLE_COLUMNS,
     MATERIAL_CLASS_TABLE_COLUMNS,
+    EQUIPMENT_CLASS_DOWNTIME_TABLE_COLUMNS,
     PROPERTIES_TABLE_COLUMNS,
 } from "@/utils/tableColumns"
 
@@ -29,6 +30,8 @@ const handler = {
         worker: WORKER_CLASS_TABLE_COLUMNS,
         equipment: EQUIPMENT_CLASS_TABLE_COLUMNS,
         material: MATERIAL_CLASS_TABLE_COLUMNS,
+        equipmentDownTime: EQUIPMENT_CLASS_DOWNTIME_TABLE_COLUMNS,
+
     },
     menuNav: {
         worker: getWorkerClassMenuNav(),
@@ -66,6 +69,7 @@ function ResourceClass() {
     const callApi = useCallApi()
 
     const [resData, setResData] = useState()
+    const [dataError, setdataError] = useState(false)
     const [activedItem, setActivedItem] = useState(null)
     const [initValue, setInitValue] = useState()
     const [deleteConfirm, setDeleteConfirm] = useState({})
@@ -76,12 +80,14 @@ function ResourceClass() {
             setActivedItem(null)
         })
     }, [resourceType, callApi])
-
     const handleTableRowClick = (row, index) => {
         const activedRow = resData[index]
         setActivedItem(activedRow)
+        setdataError(true)
     }
-
+    console.log(dataError)
+    if (activedItem) { 
+    console.log(activedItem.downtimeTypes) }
     const handleAddClass = (e) => {
         setInitValue(null)
         handleOpen(e)
@@ -129,7 +135,8 @@ function ResourceClass() {
     useEffect(() => {
         dispatch(commonStoreActions.setPageTitle("Quản lý loại " + handler.displayText[resourceType]))
     }, [dispatch, resourceType])
-
+    if (resourceType) 
+    console.log("resourceType", resourceType)
     return (
         <div data-component="ResourceClass" className="container flex h-full flex-wrap">
             <div className="relative h-full grow xl:w-full">
@@ -147,6 +154,18 @@ function ResourceClass() {
                             onDeleteRow={handleDelete}
                             unActive={!activedItem}
                         />
+                        {dataError && (
+                        <div>
+                        <h3 className="ml-1 mb-1">Thời gian dừng thiết bị {activedItem.equipmentClassId}</h3>
+                        <Table
+                            activable
+                            primary
+                            headers={handler.header["equipmentDownTime"]}
+                            body={activedItem.downtimeTypes}
+                            sticky
+                        />
+                        </div>
+                        )}
                     </div>
                 )}
                 <Button onClick={handleAddClass} className="mt-5">

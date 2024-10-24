@@ -1,5 +1,6 @@
 import { validateDescField, validateTimeInput } from "@/utils/functions"
 
+
 export const SHIFTS_SETTING_MENU_NAV = {
     id: "shiftInfo",
     type: "table",

@@ -553,6 +553,35 @@ export const getCreateOperationMenuNav = (previousOperation) => [
         ],
     },
 ]
+
+export const getCreateErrorMaterialMenuNav = (previousOperation) => [
+    {
+        id: "info",
+        title: "Lỗi vật tư",
+        type: "form",
+        items: [
+            {
+                id: "unitId",
+                type: "text",
+                label: "Id",
+                isError: validateIdField,
+            },
+            {
+                id: "unitName",
+                type: "text",
+                label: "Tên đơn vị phụ",
+                isError: validateDescField,
+            },
+            {
+                id: "conversionValueToPrimaryUnit",
+                type: "text",
+                label: "Quy đổi sang đơn vị chính",
+                isError: validateDescField,
+            },
+        ],
+    },
+]
+
 export const getMaterialClassMenuNav = () => [
     {
         id: "info",

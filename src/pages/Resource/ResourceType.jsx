@@ -216,6 +216,7 @@ function ResourceType() {
         })
     }, [resourceType, callApi])
 
+    console.log("ResData: ",resData)
     const fetchAllData = useCallback(() => {
         callApi(
             [
@@ -294,7 +295,10 @@ function ResourceType() {
                 handleSumbitCreateFunc: (data) => handler.create.operation(data, activedItem.materialDefinitionId),
             })
             modee = "operation"
-        } else {
+        } else if (accordionTableTitle == "Lỗi vật tư" ){
+            setMode("ErrorMaterial")
+        }
+        else {
             setMode("normal")
             modee = "normal"
         }
@@ -395,6 +399,7 @@ function ResourceType() {
         },
     }
     // hàm tạo mới + edit khi nhấn xác nhận trong proper menu
+    console.log("Mode", mode)
     const handleSubmit = (value) => {
         console.log(value)
         let data
@@ -558,8 +563,13 @@ function ResourceType() {
     useEffect(() => {
         setPlasticMaterialProperList(handler.classesList.plasticMaterial(plasticMaterialData))
     }, [plasticMaterialData])
-    console.log(plasticMaterialData)
-    console.log(activedItem)
+    // console.log(plasticMaterialData)
+    // if (activedItem && activedItem.defects) {
+    //     console.log(activedItem.defects);
+    // } else {
+    //     console.log("Defects not found in activedItem.");
+    // }
+    console.log(handler.editMenuNav[resourceType](classes, workUnit))
     return (
         <div data-component="ResourceType" className="container flex h-full flex-wrap">
             <div className="relative h-full grow xl:w-full">
@@ -821,11 +831,10 @@ function ResourceType() {
                                     <Table
                                         activable
                                         headers={RESOURCE_MATERIAL_ACCORDION_TABLE_HEADER[2].tableHeader}
-                                        body={activedItem.secondaryUnits}
+                                        body={activedItem.defects}
                                         onRowClick={handleClick.handleMaterialUnitClick}
                                         onEdit={handleEditWorker}
                                         onDeleteRow={handleDelete.handleMaterialUnitDelete}
-                                        onAdd={handleAddWorker}
                                         setMode={setMode}
                                         unActive={!materialUnitActivedItem}
                                         accordionTable
