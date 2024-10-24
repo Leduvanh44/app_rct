@@ -35,10 +35,13 @@ function Sidebar() {
             onMouseEnter={() => setIsExpand(true)}
             onMouseLeave={handleCloseSidebar}
         >
+            
             <div
                 className="mx-auto aspect-square w-full cursor-pointer rounded-xl bg-neutron-4 sm:w-1/2"
                 onClick={() => handleClick("/")}
-            ></div>
+            >
+                <img src="/bker.png" className="mx-auto aspect-square w-full cursor-pointer rounded-xl sm:w-1/2 px-2 py-2"></img>
+            </div>
             <div className={cl("sticky top-1/3 xxl:top-0")}>
                 {SIDEBAR_ITEMS.map((item, index) => (
                     <SidebarItem

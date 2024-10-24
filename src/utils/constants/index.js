@@ -101,7 +101,7 @@ export const MACHINE_LIST = [
     { value: "L1-4", key: "Máy ép lagging L1-4" },
 ]
 
-export const OEE_MODE_LIST = ["All", "OEE", "A", "P", "Q"]
+export const OEE_MODE_LIST = ["All", "OEE", "A", "P", "Q", "Down Time"]
 export const COMPANY_HIERACHY_MODE_LIST = ["TreeView", "OrgChart"]
 export const RESOURCE_PAGE_EQUIPMENT_LIST = ["Máy thường", "Máy ép", "Khuôn"]
 export const RESOURCE_PAGE_MATERIAL_LIST = ["Vật tư", "Sản phẩm ép", "Nguyên liệu nhựa"]

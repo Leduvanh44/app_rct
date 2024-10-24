@@ -79,7 +79,6 @@ function OeePage() {
         return (cumulativeSum / total) * 100;
     });
     
-    console.log("Phần trăm tích lũy:", cumulativePercentages);
     const state = {
         options: {
             xaxis: {
@@ -129,7 +128,8 @@ function OeePage() {
             },
         ],
     }
-    console.log(yaxis)
+    console.log("oeeModeIndex:", oeeModeIndex)
+    console.log("MachineList:", machineList)
     return (
         <>
             <div className="flex h-screen flex-col">
@@ -174,13 +174,15 @@ function OeePage() {
                     </div>
                     <ToggleButtons active={oeeModeIndex} onClick={setOeeModeIndex} titles={OEE_MODE_LIST} />
                 </Card>
-                <Card className="flex-1">
-                    {oeeModeIndex !== 0 && <h2>Giá trị {handleOeeMode(oeeModeIndex)}</h2>}
 
-                    {oeeModeIndex !== 0 && (
+                <Card className="flex-1">
+                    {oeeModeIndex !== 0 && oeeModeIndex !== 5 && <h2>Giá trị {handleOeeMode(oeeModeIndex)}</h2>}
+                    {oeeModeIndex !== 0 && oeeModeIndex !== 5 && (
                         <Chart options={state.options} series={state.series} type="line" width="100%" height={440} />
                     )}
-                    <Table headers={handleOeePageHeader(oeeModeIndex)} body={oeeData} onRowClick={handleClickRow} />
+                    {oeeModeIndex !== 5 && (
+                        <Table headers={handleOeePageHeader(oeeModeIndex)} body={oeeData} onRowClick={handleClickRow} />)}
+                    
                 </Card>
             </div>
         </>

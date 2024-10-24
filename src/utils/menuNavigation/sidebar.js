@@ -5,7 +5,7 @@ import { paths } from "@/config"
 
 const SIDEBAR_ITEMS = [
     {
-        label: "Báo cáo OEE",
+        label: "Báo cáo",
         icon: OeeIcon,
         route: paths.oee,
     },

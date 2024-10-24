@@ -439,6 +439,8 @@ export const handleOeeMode = (mode) => {
         case 4:
             return "Q"
         case 5:
+            return "Down Time"
+        case 6:
             return "L"
         default:
     }
