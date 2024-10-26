@@ -11,7 +11,7 @@ const routes = [
     },
     {
         path: paths.oee,
-        title: "Chỉ số OEE",
+        title: "Báo cáo",
         component: Pages.OeePage,
         layout: "main",
         protected: true,

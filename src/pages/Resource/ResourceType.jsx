@@ -216,7 +216,6 @@ function ResourceType() {
         })
     }, [resourceType, callApi])
 
-    console.log("ResData: ",resData)
     const fetchAllData = useCallback(() => {
         callApi(
             [
@@ -570,6 +569,8 @@ function ResourceType() {
     //     console.log("Defects not found in activedItem.");
     // }
     console.log(handler.editMenuNav[resourceType](classes, workUnit))
+    console.log("activedItem", resData)
+    console.log("activedItem", resourceType)
     return (
         <div data-component="ResourceType" className="container flex h-full flex-wrap">
             <div className="relative h-full grow xl:w-full">
