@@ -6,7 +6,8 @@ import Card from "@/components/Card"
 import SelectInput from "@/components/SelectInput"
 import DateInput from "@/components/DateInput"
 import Table from "@/components/Table"
-import ToggleButtons from "@/components/ToggleButtons/ToggleButtons"
+import ToggleButtons from "@/components/ToggleButtons"
+import BiToggleButton from "@/components/BiToggleButton"
 import Chart from "react-apexcharts"
 import { useCallApi } from "@/hooks"
 import { paths } from "@/config"
@@ -148,10 +149,7 @@ function OeePage() {
             cumulativeSum += value;
             return (cumulativeSum / total) * 100;
         });
-        return {
-            cumulativePercentages
-        };
-
+        return cumulativePercentages;
     }
 
     const handleCalculateDowntime = useCallback((downtimeTypes, data) => {
@@ -209,7 +207,7 @@ function OeePage() {
         }, {});    
         const categories = Object.keys(sumFactors);
         const seriesSumDownTimeType = Object.values(sumFactors);
-        const { cumulativePercentages } = calculatePareto(seriesSumDownTimeType);
+        const cumulativePercentages = calculatePareto(seriesSumDownTimeType);
         downTimeState = { 
             options: {
                 chart: {
@@ -227,28 +225,38 @@ function OeePage() {
                     width: [0, 4], // Độ dày đường cho từng series
                     curve: 'smooth', // Độ cong của đường
                 },
-                title: {
-                    text: 'Thời gian dừng theo từng nhóm',
-                },
+                // title: {
+                //     text: 'Thời gian dừng theo từng nhóm',
+                // },
                 xaxis: {
                     categories: categories,
                 },
                 yaxis: [{
                     title: {
                         text: "Thời gian (giờ)"
-                    }
+                    },
+                    labels: {
+                        formatter: (val) => `${val.toFixed(2)}`,
+                    },
                     },
                     {
                         opposite: true,
                         title: {
                             text: 'Cumulative Percentage',
                         },
+                        labels: {
+                            formatter: (val) => `${val.toFixed(2)}`,
+                        },
                     },
                 ],
                 tooltip: {
+                    shared: true,
+                    intersect: false,
                     y: {
-                        formatter: val => `${val} giờ`
-                    }
+                        formatter: (val, { seriesIndex }) => {
+                            return seriesIndex === 0 ? `${val} giờ` : `${val.toFixed(2)} %`;
+                        },
+                    },
                 },
                 legend: {
                     position: "top"
@@ -404,13 +412,14 @@ function OeePage() {
                 </Card>
 
                 <Card className="flex-1">
-                    {oeeModeIndex !== 0 && oeePageIndex == 0 && <h2>Giá trị {handleOeeMode(oeeModeIndex)}</h2>}
-                    {oeeModeIndex !== 0 && oeePageIndex == 0 && (
+                    {oeeModeIndex !== 0 && oeePageIndex === 0 && (
+                    <>
+                        <h2>Giá trị {handleOeeMode(oeeModeIndex)}</h2>
                         <Chart options={state.options} series={state.series} type="line" width="100%" height={440} />
+                    </>
                     )}
-
                     {oeePageIndex == 1 && (
-                        <Card className="flex-1 mb-5" onClick={() => setOeeChartIndex(prevIndex => (prevIndex === 1 ? 0 : 1))}>
+                        <Card className="flex-1 mb-5 flex flex-col" >
                             <Chart options={downTimeState.options} series={downTimeState.series}  type="line" width="100%" height={440} />
                             {oeeChartIndex === 1 && (
                             downTimeTypeState.map(key => {
@@ -451,6 +460,9 @@ function OeePage() {
                                 );
                             })
                         )}
+                        <div className="flex items-center justify-center">
+                            <BiToggleButton toggleValue={oeeChartIndex} setToggleValue={setOeeChartIndex} />
+                        </div>
                         </Card>)
                     }
 
